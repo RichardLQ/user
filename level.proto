@@ -1,0 +1,62 @@
+syntax = "proto3";
+option go_package = "/stub";
+package level;
+
+
+message GetLevelReq {
+  int32 id = 1;
+}
+
+message GetLevelRsp {
+  int32 ret = 1;
+  Level data = 2;
+  string msg = 3;
+}
+
+message Level {
+  int32 id = 1;
+  string name = 2;
+  string desc = 3;
+  string created_at = 4;
+}
+
+message GetLevelListReq {
+  int32 id = 1;
+  string name = 2;
+  int32 page = 3;
+  int32 page_size = 4;
+}
+
+message GetLevelListRsp {
+  int32 ret = 1;
+  repeated Level data = 2;
+  int64  total = 3;
+  string msg = 4;
+}
+
+message AddLevelInfoReq {
+  Level data = 1;
+}
+
+message AddLevelInfoRsp {
+  int32 ret = 1;
+  string msg = 2;
+}
+
+message DelLevelInfoReq {
+  int32 id = 1;
+}
+
+message DelLevelInfoRsp {
+  int32 ret = 1;
+  string msg = 2;
+}
+
+message UpdateLevelInfoReq {
+  Level data = 1;
+}
+
+message UpdateLevelInfoRsp {
+  int32 ret = 1;
+  string msg = 2;
+}

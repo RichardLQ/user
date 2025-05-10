@@ -1,0 +1,214 @@
+syntax = "proto3";
+option go_package = "/stub";
+package user;
+
+message UpdateUserInfoReq {
+  UserInfo data = 1;
+}
+
+message UpdateUserInfoRsp {
+  int32 ret = 1;
+  string msg = 2;
+}
+
+
+message DelUserInfoReq {
+  int32 id = 1;
+}
+
+message DelUserInfoRsp {
+  int32 ret = 1;
+  string msg = 2;
+}
+
+
+message AddUserInfoReq {
+  UserInfo data = 1;
+}
+
+
+
+message AddUserInfoRsp {
+  int32 ret = 1;
+  string msg = 2;
+}
+
+
+message GetUserListReq {
+  int32 id = 1;
+  string phone = 2;
+  StatusType status = 3;
+  string start_time = 4;
+  string end_time = 5;
+  int32 page = 6;
+  int32 page_size = 7;
+  string nick_name = 8;
+}
+
+enum StatusType {
+  StatusUnknown = 0;//未知
+  StatusNormal = 1;//正常
+  StatusForbid = 2;//禁止
+}
+
+message GetUserListRsp {
+  int32 ret = 1;
+  repeated User data = 2;
+  int64  total = 3;
+  string msg = 4;
+}
+
+
+message GetUserReq {
+  int32 id = 1;
+  string phone = 2;
+  StatusType status = 3;
+  string start_time = 4;
+  string end_time = 5;
+}
+
+message GetUserRsp {
+  int32 ret = 1;
+  Info data = 2;
+  string msg = 5;
+}
+
+message Info {
+  User user_info = 1;
+  repeated string roles = 3;
+  repeated string perms = 4;
+}
+
+message User {
+  int32 id = 1;
+  string phone = 2;
+  string birthday = 4;
+  string province = 5;
+  string city = 6;//市区
+  string address = 7;
+  string avatar = 8;
+  string desc = 9;
+  string nick_name = 10;
+  StatusType status = 11;
+  int32 lid = 12;
+  string level_name = 13;
+  string start_time = 14;
+  string end_time = 15;
+  string created_at = 16;
+  string update_at = 17;
+}
+
+message UserInfo {
+  int32 id = 1;
+  string phone = 2;
+  string password = 3;
+  string birthday = 4;
+  string province = 5;
+  string city = 6;//市区
+  string address = 7;
+  string avatar = 8;
+  string desc = 9;
+  string nick_name = 10;
+  StatusType status = 11 ;
+  int32 lid = 12;
+  string salt = 13;
+  string start_time = 14;
+  string end_time = 15;
+}
+
+message LoginReq{
+  string phone = 1;
+  string password = 2;
+}
+
+message LoginData {
+  string access_token = 1;
+  int64 expires = 2;
+  string refresh_token = 3;
+  string token_type = 4;
+}
+
+message LoginRsp {
+  int32 ret = 1;
+  string msg = 2;
+  LoginData data = 3;
+}
+
+message GetSimpleUserInfoReq{
+}
+
+message GetSimpleUserInfoRsp {
+  int32 ret = 1;
+  Info data = 2;
+  string msg = 5;
+}
+
+message Roles {
+  int32 id = 1;
+  string role_name = 2;
+  string description = 3;
+}
+
+
+message MenuDetail {
+  int32 id = 1;
+  string type = 2;
+  string name = 3;
+  string code = 4;
+  int32 parent_id = 5;
+  string path = 6;
+  string icon = 7;
+  int32 sort = 8;
+  string component = 9;
+  StatusType status = 10;
+}
+
+message GetMenuDetailReq {
+  repeated int32 id = 1;
+}
+
+message GetMenuDetailRsp {
+  int32 ret = 1;
+  repeated Menu data = 2;
+  string msg = 3;
+}
+
+
+message GetMenuReq {
+  repeated int32 id = 1;
+}
+
+message Meta {
+  bool alwayShow = 1;
+  bool hidden = 2;
+  string icon = 3;
+  bool keepAlive = 4;
+  string params = 5;
+  string title = 6;
+  repeated string roles = 7;
+  string redirect = 8;
+}
+
+message Menu {
+  string component = 1;
+  string name = 2;
+  string path = 3;
+  Meta meta = 4;
+  repeated Menu children = 5;
+}
+
+message GetMenuRsp {
+  int32 ret = 1;
+  repeated MenuDetail data = 2;
+  string msg = 3;
+}
+
+
+message RefreshReq{
+}
+
+message RefreshRsp {
+  int32 ret = 1;
+  string msg = 2;
+  LoginData data = 3;
+}

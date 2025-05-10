@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+import "level.proto";
+
+option go_package = "/stub";
+package level;
+
+service LevelService {
+  //获取等级信息
+  rpc GetLevel(GetLevelReq) returns (GetLevelRsp) {}
+
+  //获取等级列表
+  rpc GetLevelList(GetLevelListReq) returns (GetLevelListRsp) {}
+
+  //新增等级信息
+  rpc AddLevelInfo(AddLevelInfoReq) returns (AddLevelInfoRsp) {}
+
+  //删除等级信息
+  rpc DelLevelInfo(DelLevelInfoReq) returns (DelLevelInfoRsp) {}
+
+  //更新等级信息
+  rpc UpdateLevelInfo(UpdateLevelInfoReq) returns (UpdateLevelInfoRsp) {}
+}
